@@ -6,3 +6,9 @@ export const getAllUsers = async (req, res) => {
   if (!users) throw new NotFoundError("No users found");
   res.status(200).json({ msg: "success", users });
 };
+
+export const getSingleUser = async (req, res) => {
+  const user = await User.findById(req.params.id);
+  if (!user) throw new NotFoundError("No user found");
+  res.status(200).json({ msg: "success", user });
+};

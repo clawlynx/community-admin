@@ -14,7 +14,7 @@ export default function Header() {
     await logout();
   }
   return (
-    <div className="h-20 flex justify-between items-center w-full border-b border-neutral-300 px-5">
+    <div className="h-20 flex justify-between bg-neutral-200 items-center w-full border-b sticky top-0 z-10 border-neutral-300 px-5">
       <div className="flex flex-col gap-2">
         <h1 className="text-xl font-semibold">Welcome Admin...</h1>
         <h1 className="text-sm">Here is what is happening to your app</h1>

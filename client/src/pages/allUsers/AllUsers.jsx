@@ -27,6 +27,7 @@ export default function AllUsers() {
               contact={x.phone ? x.phone : "Nill"}
               email={x.email}
               location={x.address}
+              id={x._id}
             />
           ))}
       </div>

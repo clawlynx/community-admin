@@ -35,19 +35,14 @@ export default function HomeLayout() {
     handleFetch();
   }, []);
 
-  useEffect(() => {
-    if (!user) {
-      navigate("/auth/login");
-    }
-  }, [user]);
   return (
     <div className="flex gap-2 w-full">
-      <div>
+      <div className="sticky left-0 top-0">
         <SideBar />
       </div>
       <div className="w-full">
         <Header />
-        <div className="py-7 px-5">
+        <div className="py-7 px-5 z-0">
           <Outlet />
         </div>
       </div>

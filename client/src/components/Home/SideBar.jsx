@@ -26,7 +26,7 @@ export default function SideBar() {
     setActive(pathname);
   }, []);
   return (
-    <div className="min-h-screen overflow-auto w-72 bg-teal-900 rounded-r-3xl p-5">
+    <div className="min-h-screen overflow-auto w-72 bg-teal-900 rounded-r-3xl p-5 sticky left-0 top-0">
       <h1 className="text-2xl text-teal-300 mb-5 border-b border-teal-700 pb-7">
         Community Admin
       </h1>

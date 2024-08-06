@@ -15,6 +15,8 @@ import Matrimony from "./pages/matrimony/Matrimony";
 import Settings from "./pages/settings/Settings";
 import Candidates from "./pages/job-portal/CandidatesPage/Candidates";
 import Jobs from "./pages/job-portal/jobsPage/Jobs";
+import AllUsersSinglePage from "./pages/allUsers/AllUsersSinglePage";
+import EmployerSinglePage from "./pages/job-portal/EmployersPage/EmployerSinglePage";
 
 function App() {
   const router = createBrowserRouter([
@@ -32,8 +34,16 @@ function App() {
           element: <AllUsers />,
         },
         {
+          path: "all-users/:id",
+          element: <AllUsersSinglePage />,
+        },
+        {
           path: "job-portal",
           element: <JobPortal />,
+        },
+        {
+          path: "job-portal/employers/:id",
+          element: <EmployerSinglePage />,
         },
         {
           path: "job-portal/candidates",

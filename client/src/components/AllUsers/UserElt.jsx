@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function UserElt({
   profilePic,
@@ -9,7 +10,7 @@ export default function UserElt({
   id,
 }) {
   return (
-    <div className="grid grid-cols-5 p-3 px-5 bg-teal-300 rounded-lg">
+    <div className="grid grid-cols-5 items-center p-3 px-5 bg-teal-300 rounded-lg">
       <div className="flex gap-5 items-center">
         <div className="w-10 h-10 rounded-full overflow-hidden">
           <img src={profilePic ? profilePic : "/nouser.png"}></img>
@@ -21,9 +22,12 @@ export default function UserElt({
       <h1>{email}</h1>
       <h1>{location}</h1>
 
-      <button className="p-2 bg-teal-900 text-neutral-300 rounded-lg hover:bg-teal-500 nav-link">
+      <Link
+        to={`/all-users/${id}`}
+        className="p-2 bg-teal-900 text-center text-neutral-300 rounded-lg hover:bg-teal-500 nav-link"
+      >
         View
-      </button>
+      </Link>
     </div>
   );
 }

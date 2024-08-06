@@ -28,6 +28,7 @@ export default function Employers() {
               email={x.companyEmail}
               location={x.state}
               jobs={x.totalJobs && x.totalJobs.length}
+              id={x._id}
             />
           ))}
       </div>
