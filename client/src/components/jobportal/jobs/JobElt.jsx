@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function JobElt({
   image,
@@ -21,9 +22,12 @@ export default function JobElt({
       <h1>{jobtype ? jobtype : "N/A"}</h1>
       <h1>{location ? location : "N/A"}</h1>
 
-      <button className="p-2 bg-teal-900 text-neutral-300 rounded-lg hover:bg-teal-500 nav-link">
+      <Link
+        to={`/job-portal/jobs/${id}`}
+        className="p-2 bg-teal-900 text-center text-neutral-300 rounded-lg hover:bg-teal-500 nav-link"
+      >
         View
-      </button>
+      </Link>
     </div>
   );
 }

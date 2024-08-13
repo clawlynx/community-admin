@@ -17,6 +17,12 @@ import Candidates from "./pages/job-portal/CandidatesPage/Candidates";
 import Jobs from "./pages/job-portal/jobsPage/Jobs";
 import AllUsersSinglePage from "./pages/allUsers/AllUsersSinglePage";
 import EmployerSinglePage from "./pages/job-portal/EmployersPage/EmployerSinglePage";
+import CandidateSinglePage from "./pages/job-portal/CandidatesPage/CandidateSinglePage";
+import JobSinglePage from "./pages/job-portal/jobsPage/JobSinglePage";
+import EditUser from "./pages/allUsers/EditUser";
+import EditEmployer from "./pages/job-portal/EmployersPage/EditEmployer";
+import EditCandidate from "./pages/job-portal/CandidatesPage/EditCandidate";
+import EditJob from "./pages/job-portal/jobsPage/EditJob";
 
 function App() {
   const router = createBrowserRouter([
@@ -38,6 +44,10 @@ function App() {
           element: <AllUsersSinglePage />,
         },
         {
+          path: "all-users/:id/edit",
+          element: <EditUser />,
+        },
+        {
           path: "job-portal",
           element: <JobPortal />,
         },
@@ -46,12 +56,32 @@ function App() {
           element: <EmployerSinglePage />,
         },
         {
+          path: "job-portal/employers/:id/edit",
+          element: <EditEmployer />,
+        },
+        {
           path: "job-portal/candidates",
           element: <Candidates />,
         },
         {
+          path: "job-portal/candidates/:id",
+          element: <CandidateSinglePage />,
+        },
+        {
+          path: "job-portal/candidates/:id/edit",
+          element: <EditCandidate />,
+        },
+        {
           path: "job-portal/jobs",
           element: <Jobs />,
+        },
+        {
+          path: "job-portal/jobs/:id",
+          element: <JobSinglePage />,
+        },
+        {
+          path: "job-portal/jobs/:id/edit",
+          element: <EditJob />,
         },
         {
           path: "study-abroad",

@@ -6,6 +6,7 @@ import { FaPhoneAlt } from "react-icons/fa";
 import { FaFacebookSquare } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa";
+import SmallDetail from "../../../SmallDetail";
 export default function EmployerDetails({ data }) {
   return (
     <div className="bg-teal-200 rounded-lg p-2 px-5 mt-5">
@@ -24,28 +25,16 @@ export default function EmployerDetails({ data }) {
         <DetailElt icon={<FaLinkedin />} content={data?.linkedin} />
       </div>
       <div className="flex flex-col gap-7 px-5 py-3">
+        <SmallDetail title={"Address"} content={data?.companyAddress} />
+        <SmallDetail
+          title={"Founded On"}
+          content={data?.founded.toString().slice(0, 10)}
+        />
+        <SmallDetail title={"Company Size"} content={data?.size} />
+        <SmallDetail title={"Jobs Posted"} content={data?.totalJobs.length} />
+
         <div className="flex gap-3">
-          <h1 className="w-40">Address</h1>
-          <p>:</p>
-          <p>{data?.companyAddress}</p>
-        </div>
-        <div className="flex gap-3">
-          <h1 className="w-40">Founded On</h1>
-          <p>:</p>
-          <p>{data?.founded.toString().slice(0, 10)}</p>
-        </div>
-        <div className="flex gap-3">
-          <h1 className="w-40">Company Size</h1>
-          <p>:</p>
-          <p>{data?.size}</p>
-        </div>
-        <div className="flex gap-3">
-          <h1 className="w-40">Jobs Posted</h1>
-          <p>:</p>
-          <p>{data?.totalJobs.length}</p>
-        </div>
-        <div className="flex gap-3">
-          <h1 className="min-w-40">about</h1>
+          <h1 className="min-w-44">about</h1>
           <p>:</p>
           <p className="leading-6">{data?.about}</p>
         </div>

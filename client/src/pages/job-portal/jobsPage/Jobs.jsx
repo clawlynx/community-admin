@@ -27,6 +27,7 @@ export default function Jobs() {
               company={x.owner.companyName}
               jobtype={x.jobType}
               location={x.jobLocation}
+              id={x._id}
             />
           ))}
       </div>

@@ -3,7 +3,7 @@ import { MdWork } from "react-icons/md";
 
 export default function JobSection({ data }) {
   return (
-    <div className="bg-teal-200 rounded-lg p-2 px-5 mt-5">
+    <div className="bg-teal-200 rounded-lg p-2 px-5 mt-5 max-h-[1086px] overflow-auto">
       <h1 className="text-xl my-3 border-b border-teal-300 pb-3">
         Jobs Posted
       </h1>

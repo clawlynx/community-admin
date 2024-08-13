@@ -23,10 +23,11 @@ export default function Candidates() {
             <CandidateElt
               key={x._id}
               image={x.profilePic}
-              name={x.fullName}
+              name={x.fullName ? x.fullName : x.owner.username}
               role={x.oneWord}
               email={x.owner.email}
-              location={x.preferredLocation && x.preferredLocation[0]}
+              location={x.owner.address}
+              id={x._id}
             />
           ))}
       </div>

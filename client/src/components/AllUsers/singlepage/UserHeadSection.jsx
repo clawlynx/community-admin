@@ -26,9 +26,12 @@ export default function UserHeadSection({ data }) {
           </div>
         </div>
         <div>
-          <button className="p-2 px-3 bg-teal-500 rounded-lg hover:bg-teal-400 nav-link">
+          <Link
+            to={`/all-users/${data?._id}/edit`}
+            className="p-2 px-3 bg-teal-500 rounded-lg hover:bg-teal-400 nav-link"
+          >
             Edit
-          </button>
+          </Link>
         </div>
       </div>
     </>

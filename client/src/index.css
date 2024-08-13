@@ -66,6 +66,7 @@ h5 {
 }
 .form-row {
   margin-bottom: 1rem;
+  width: 100%;
 }
 
 .form-textarea {

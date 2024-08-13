@@ -3,6 +3,8 @@ import { IoLocationSharp } from "react-icons/io5";
 import { FaClock } from "react-icons/fa6";
 import { FaCalendarAlt } from "react-icons/fa";
 import DetailElt from "../../DetailElt";
+import SmallDetail from "../../SmallDetail";
+import SmallDetailList from "../../SmallDetailList";
 
 export default function UserDetails({ data }) {
   return (
@@ -19,48 +21,15 @@ export default function UserDetails({ data }) {
         />
       </div>
       <div className="flex flex-col gap-7 px-5 py-3">
-        <div className="flex gap-3">
-          <h1 className="w-44">Gender</h1>
-          <p>:</p>
-          <p>{data?.gender}</p>
-        </div>
-        <div className="flex gap-3">
-          <h1 className="w-44">Highest Qualification</h1>
-          <p>:</p>
-          <p>{data?.highestQualification}</p>
-        </div>
-        <div className="flex gap-3">
-          <h1 className="w-44">Hobbies</h1>
-          <p>:</p>
-          <ul>
-            {data?.hobbies.map((x) => (
-              <li key={x} className="leading-6">
-                {x}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="flex gap-3">
-          <h1 className="w-44">Interest</h1>
-          <p>:</p>
-          <ul>
-            {data?.interest.map((x) => (
-              <li key={x} className="leading-6">
-                {x}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="flex gap-3">
-          <h1 className="w-44">smoking</h1>
-          <p>:</p>
-          <p>{data?.smoking}</p>
-        </div>
-        <div className="flex gap-3">
-          <h1 className="w-44">drinking</h1>
-          <p>:</p>
-          <p>{data?.drinking}</p>
-        </div>
+        <SmallDetail title={"Gender"} content={data?.gender} />
+        <SmallDetail
+          title={"Highest Qualification"}
+          content={data?.highestQualification}
+        />
+        <SmallDetailList title={"Hobbies"} list={data?.hobbies} />
+        <SmallDetailList title={"Interest"} list={data?.interest} />
+        <SmallDetail title={"smoking"} content={data?.smoking} />
+        <SmallDetail title={"drinking"} content={data?.drinking} />
       </div>
     </div>
   );

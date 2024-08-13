@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function EmployerHeadSection({ data }) {
+export default function CandidateHeadSection({ data }) {
   return (
     <>
       <div className="flex justify-end">
         <Link
-          to={"/job-portal"}
+          to={"/job-portal/candidates"}
           className="p-2 bg-teal-600 hover:bg-teal-500 nav-link rounded-lg text-neutral-200"
         >
           Go back
@@ -16,18 +16,20 @@ export default function EmployerHeadSection({ data }) {
         <div>
           <div className="flex gap-4">
             <div className="w-20 h-20 rounded-full overflow-hidden">
-              <img src={data?.logo ? data.logo : "/nocompany.png"}></img>
+              <img
+                src={data?.profilePic ? data.profilePic : "/nouser.png"}
+              ></img>
             </div>
             <div className="flex flex-col justify-between">
-              <h1>{data?.companyName}</h1>
-              <h1>{data?.industry}</h1>
-              <p>{data?.website && data.website}</p>
+              <h1>{data?.fullName ? data.fullName : data?.owner?.username}</h1>
+              <h1>{data?.oneWord}</h1>
+              <p>{data?.owner && data.owner.address}</p>
             </div>
           </div>
         </div>
         <div>
           <Link
-            to={`/job-portal/employers/${data?._id}/edit`}
+            to={`/job-portal/candidates/${data?._id}/edit`}
             className="p-2 px-3 bg-teal-500 rounded-lg hover:bg-teal-400 nav-link"
           >
             Edit
