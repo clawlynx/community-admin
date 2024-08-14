@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import FormInput from "../../FormInput";
 import FormSelect from "../../FormSelect";
 import { Link } from "react-router-dom";
+import useEditUser from "../../../hooks/allusers/useEditUser";
+import Loading from "../../Loading";
 
 export default function EditUserSection({ data }) {
   const [age, setAge] = useState(data?.age || "");
@@ -9,8 +11,8 @@ export default function EditUserSection({ data }) {
   const [email, setEmail] = useState(data?.email || "");
   const [phone, setPhone] = useState(data?.phone || "");
   const [username, setUsername] = useState(data?.username || "");
-  const [hobbies, setHobbies] = useState(data?.hobbies || "");
-  const [interest, setInterest] = useState(data?.interest || "");
+  const [hobbies, setHobbies] = useState(data?.hobbies?.toString() || "");
+  const [interest, setInterest] = useState(data?.interest?.toString() || "");
   const [gender, setGender] = useState(data?.gender || "Male");
   const [smoking, setSmoking] = useState(data?.smoking || "Often");
   const [drinking, setDrinking] = useState(data?.drinking || "Often");
@@ -18,6 +20,24 @@ export default function EditUserSection({ data }) {
   const [highestQualification, setHighestQualification] = useState(
     data?.highestQualification || "High School"
   );
+  const { loading, editUser } = useEditUser();
+  async function handleSave() {
+    await editUser({
+      age,
+      dateOfBirth,
+      email,
+      phone,
+      username,
+      hobbies,
+      interest,
+      gender,
+      smoking,
+      drinking,
+      address,
+      highestQualification,
+      id: data?._id,
+    });
+  }
 
   useEffect(() => {
     if (data && data.dateOfBirth) {
@@ -116,9 +136,14 @@ export default function EditUserSection({ data }) {
           >
             Cancel
           </Link>
-          <button className="px-3 py-2 bg-teal-400 rounded-lg hover:bg-teal-500 nav-link">
+          <button
+            onClick={handleSave}
+            disabled={loading}
+            className="px-3 py-2 bg-teal-400 rounded-lg hover:bg-teal-500 nav-link"
+          >
             Save
           </button>
+          {loading && <Loading />}
         </div>
       </div>
     </div>

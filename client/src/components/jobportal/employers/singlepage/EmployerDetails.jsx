@@ -16,7 +16,7 @@ export default function EmployerDetails({ data }) {
       <div className="flex flex-col gap-7 px-5 border-b border-teal-300 pb-3">
         <DetailElt
           icon={<IoLocationSharp />}
-          content={`${data?.state}, ${data?.country.toUpperCase()}`}
+          content={`${data?.state}, ${data?.country?.toUpperCase()}`}
         />
         <DetailElt icon={<MdEmail />} content={data?.companyEmail} />
         <DetailElt icon={<FaPhoneAlt />} content={data?.companyContact} />
@@ -28,10 +28,10 @@ export default function EmployerDetails({ data }) {
         <SmallDetail title={"Address"} content={data?.companyAddress} />
         <SmallDetail
           title={"Founded On"}
-          content={data?.founded.toString().slice(0, 10)}
+          content={data?.founded?.toString().slice(0, 10)}
         />
         <SmallDetail title={"Company Size"} content={data?.size} />
-        <SmallDetail title={"Jobs Posted"} content={data?.totalJobs.length} />
+        <SmallDetail title={"Jobs Posted"} content={data?.totalJobs?.length} />
 
         <div className="flex gap-3">
           <h1 className="min-w-44">about</h1>

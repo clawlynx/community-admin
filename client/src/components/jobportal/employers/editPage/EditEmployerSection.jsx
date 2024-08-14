@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import FormInput from "../../../FormInput";
 import FormSelect from "../../../FormSelect";
 import { Link } from "react-router-dom";
+import useEditEmployer from "../../../../hooks/jobportal/useEditEmployer";
+import Loading from "../../../Loading";
 
 export default function EditEmployerSection({ data }) {
   const [founded, setFounded] = useState("");
@@ -24,6 +26,7 @@ export default function EditEmployerSection({ data }) {
   const [website, setWebsite] = useState(data?.website || "");
   const [size, setSize] = useState(data?.size || "10-50");
   const [about, setAbout] = useState(data?.about || "");
+  const { loading, editEmployer } = useEditEmployer();
 
   useEffect(() => {
     if (data && data.founded) {
@@ -32,6 +35,27 @@ export default function EditEmployerSection({ data }) {
       setFounded(dateToShow);
     }
   }, []);
+
+  async function handleSave() {
+    await editEmployer({
+      founded,
+      companyName,
+      companyEmail,
+      companyContact,
+      companyAddress,
+      state,
+      country,
+      industry,
+      facebook,
+      twitter,
+      linkedin,
+      website,
+      size,
+      about,
+      id: data?._id,
+    });
+  }
+
   return (
     <div className="w-full flex items-center">
       <div className="bg-teal-300 p-5 rounded-lg flex flex-col items-center w-3/5 mx-auto">
@@ -144,9 +168,14 @@ export default function EditEmployerSection({ data }) {
           >
             Cancel
           </Link>
-          <button className="px-3 py-2 bg-teal-400 rounded-lg hover:bg-teal-500 nav-link">
+          <button
+            onClick={handleSave}
+            disabled={loading}
+            className="px-3 py-2 bg-teal-400 rounded-lg hover:bg-teal-500 nav-link"
+          >
             Save
           </button>
+          {loading && <Loading />}
         </div>
       </div>
     </div>

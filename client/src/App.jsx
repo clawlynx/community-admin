@@ -23,6 +23,7 @@ import EditUser from "./pages/allUsers/EditUser";
 import EditEmployer from "./pages/job-portal/EmployersPage/EditEmployer";
 import EditCandidate from "./pages/job-portal/CandidatesPage/EditCandidate";
 import EditJob from "./pages/job-portal/jobsPage/EditJob";
+import DeleteRequestPage from "./pages/job-portal/deleteRequests/DeleteRequestPage";
 
 function App() {
   const router = createBrowserRouter([
@@ -82,6 +83,10 @@ function App() {
         {
           path: "job-portal/jobs/:id/edit",
           element: <EditJob />,
+        },
+        {
+          path: "job-portal/delete-requests",
+          element: <DeleteRequestPage />,
         },
         {
           path: "study-abroad",

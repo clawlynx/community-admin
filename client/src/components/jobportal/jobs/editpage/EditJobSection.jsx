@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import FormInput from "../../../FormInput";
 import FormSelect from "../../../FormSelect";
 import { Link } from "react-router-dom";
+import useEditJob from "../../../../hooks/jobportal/useEditJob";
+import Loading from "../../../Loading";
 
 export default function EditJobSection({ data }) {
   const [jobTitle, setJobTitle] = useState(data?.jobTitle || "");
@@ -18,8 +20,9 @@ export default function EditJobSection({ data }) {
   const [location, setLocation] = useState(data?.jobLocation || "On-site");
   const [type, setType] = useState(data?.jobType || "Full-time");
   const [salary, setSalary] = useState(data?.salary || "");
-  const [skills, setSkills] = useState(data?.skills || "");
+  const [skills, setSkills] = useState(data?.skills?.toString() || "");
   const [desc, setDesc] = useState(data?.description || "");
+  const { loading, editJob } = useEditJob();
 
   useEffect(() => {
     if (data && data.deadline) {
@@ -28,6 +31,25 @@ export default function EditJobSection({ data }) {
       setDeadline(dateToShow);
     }
   }, []);
+
+  async function handleSave() {
+    await editJob({
+      jobTitle,
+      category,
+      address,
+      deadline,
+      qualification,
+      experience,
+      gender,
+      location,
+      type,
+      salary,
+      skills,
+      desc,
+      id: data?._id,
+    });
+  }
+
   return (
     <div className="w-full flex items-center">
       <div className="bg-teal-300 p-5 rounded-lg flex flex-col items-center w-3/5 mx-auto">
@@ -134,9 +156,14 @@ export default function EditJobSection({ data }) {
           >
             Cancel
           </Link>
-          <button className="px-3 py-2 bg-teal-400 rounded-lg hover:bg-teal-500 nav-link">
+          <button
+            onClick={handleSave}
+            disabled={loading}
+            className="px-3 py-2 bg-teal-400 rounded-lg hover:bg-teal-500 nav-link"
+          >
             Save
           </button>
+          {loading && <Loading />}
         </div>
       </div>
     </div>

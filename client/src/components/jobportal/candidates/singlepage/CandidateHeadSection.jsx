@@ -1,7 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import DeleteModal from "../../../DeleteModal";
+import useDeleteJobSeeker from "../../../../hooks/jobportal/useDeleteJobSeeker";
 
 export default function CandidateHeadSection({ data }) {
+  const [isDelete, setIsDelete] = useState(false);
+  const [deleteId, setDeleteId] = useState("");
+  const { loading, deleteJobSeeker } = useDeleteJobSeeker();
+
+  function cancelDelete() {
+    setDeleteId("");
+    setIsDelete(false);
+  }
+
+  async function confirmDelete() {
+    await deleteJobSeeker({ id: deleteId });
+    setIsDelete(false);
+    setDeleteId("");
+  }
   return (
     <>
       <div className="flex justify-end">
@@ -34,8 +50,22 @@ export default function CandidateHeadSection({ data }) {
           >
             Edit
           </Link>
+          <button
+            onClick={() => {
+              setIsDelete(true);
+              setDeleteId(data?._id);
+            }}
+            className="p-2 px-3 bg-red-600 rounded-lg hover:bg-red-500 nav-link mx-2"
+          >
+            Delete
+          </button>
         </div>
       </div>
+      {isDelete && (
+        <div className="relative">
+          <DeleteModal function1={cancelDelete} function2={confirmDelete} />
+        </div>
+      )}
     </>
   );
 }

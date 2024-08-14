@@ -138,6 +138,9 @@ const EmployerSchema = new Schema(
       type: [rejectedSchema],
       default: [],
     },
+    deleteRequest: {
+      type: Boolean,
+    },
   },
   { timestamps: true }
 );

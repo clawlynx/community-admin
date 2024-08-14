@@ -22,9 +22,9 @@ export default function Jobs() {
           jobs.map((x) => (
             <JobElt
               key={x._id}
-              image={x.owner.logo}
+              image={x.owner?.logo}
               name={x.jobTitle}
-              company={x.owner.companyName}
+              company={x.owner?.companyName}
               jobtype={x.jobType}
               location={x.jobLocation}
               id={x._id}

@@ -141,6 +141,9 @@ const JobSeekerSchema = new Schema(
     dataCollected: {
       type: Boolean,
     },
+    deleteRequest: {
+      type: Boolean,
+    },
   },
   {
     timestamps: true,

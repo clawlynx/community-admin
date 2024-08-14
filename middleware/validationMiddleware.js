@@ -1,6 +1,8 @@
 import { body, validationResult } from "express-validator";
 import { BadRequestError } from "../errors/customErrors.js";
 import Admin from "../models/AdminUserModel.js";
+import User from "../models/UserModel.js";
+import Employer from "../models/jobportal/EmployerModel.js";
 
 const withValidationErrors = (validateValues) => {
   return [
@@ -39,4 +41,32 @@ export const validateLoginInput = withValidationErrors([
     .isEmail()
     .withMessage("Invalid Email format"),
   body("password").notEmpty().withMessage("Password is required"),
+]);
+
+export const validateEditUserInput = withValidationErrors([
+  body("email")
+    .notEmpty()
+    .withMessage("Email is required")
+    .isEmail()
+    .withMessage("Invalid Email format")
+    .custom(async (email, { req }) => {
+      const user = await User.findOne({ email: email });
+      if (user && user._id.toString() !== req.params.id.toString()) {
+        throw new BadRequestError("Email already exists");
+      }
+    }),
+]);
+
+export const validateEditEmployerInput = withValidationErrors([
+  body("companyEmail")
+    .notEmpty()
+    .withMessage("Email is required")
+    .isEmail()
+    .withMessage("Invalid Email format")
+    .custom(async (companyEmail, { req }) => {
+      const user = await Employer.findOne({ companyEmail: companyEmail });
+      if (user && user._id.toString() !== req.params.id.toString()) {
+        throw new BadRequestError("Email already exists");
+      }
+    }),
 ]);
