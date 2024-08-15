@@ -8,10 +8,12 @@ import {
   getAllCandidates,
   getAllEmployers,
   getAllJobs,
+  getApprovals,
   getDeleteRequests,
   getSingleCandidate,
   getSingleEmployer,
   getSingleJob,
+  verifyCompany,
 } from "../../controllers/jobportal/jobPortalController.js";
 import { validateEditEmployerInput } from "../../middleware/validationMiddleware.js";
 
@@ -29,4 +31,6 @@ router.get("/jobs", getAllJobs);
 router.get("/jobs/:id", getSingleJob);
 router.patch("/jobs/:id", editSingleJob);
 router.get("/delete-requests", getDeleteRequests);
+router.get("/approvals", getApprovals);
+router.patch("/approvals/:id", verifyCompany);
 export default router;

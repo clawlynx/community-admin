@@ -42,6 +42,7 @@ export const editSingleEmployer = async (req, res) => {
 export const deleteEmployer = async (req, res) => {
   const employer = await Employer.findByIdAndDelete(req.params.id);
   if (!employer) throw new NotFoundError("No employer found");
+  const jobs = await Job.deleteMany({ owner: req.params.id });
   res.status(200).json({ msg: "success" });
 };
 
@@ -128,4 +129,20 @@ export const getDeleteRequests = async (req, res) => {
   const candidates = await JobSeeker.find({ deleteRequest: true });
   if (!candidates) throw new NotFoundError("No Candidates");
   res.status(200).json({ msg: "success", employers, candidates });
+};
+
+export const getApprovals = async (req, res) => {
+  const approvals = await Employer.find({
+    $or: [{ verified: { $exists: false } }, { verified: false }],
+  });
+  if (!approvals) throw new NotFoundError("No pending approvals");
+  res.status(200).json({ msg: "success", approvals });
+};
+
+export const verifyCompany = async (req, res) => {
+  const employer = await Employer.findById(req.params.id);
+  if (!employer) throw new NotFoundError("No employer found");
+  employer.verified = true;
+  await employer.save();
+  res.status(200).json({ msg: "success" });
 };

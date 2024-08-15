@@ -25,7 +25,7 @@ export default function DeleteRequestPage() {
               type={"employer"}
             />
           ))}
-        {employers.length === 0 && <p>No Requests</p>}
+        {employers.length === 0 && <p className="py-5">No Requests</p>}
         <h1 className="text-xl">JobSeekers</h1>
         {candidates.length > 0 &&
           candidates.map((x) => (
@@ -37,6 +37,7 @@ export default function DeleteRequestPage() {
               id={x._id}
             />
           ))}
+        {candidates.length === 0 && <p className="py-5">No Requests</p>}
       </div>
     </div>
   );

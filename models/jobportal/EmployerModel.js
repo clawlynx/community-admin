@@ -141,6 +141,18 @@ const EmployerSchema = new Schema(
     deleteRequest: {
       type: Boolean,
     },
+    gstNo: {
+      type: String,
+    },
+    registrationId: {
+      type: String,
+    },
+    panId: {
+      type: String,
+    },
+    verified: {
+      type: Boolean,
+    },
   },
   { timestamps: true }
 );

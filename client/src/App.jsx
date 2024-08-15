@@ -24,6 +24,7 @@ import EditEmployer from "./pages/job-portal/EmployersPage/EditEmployer";
 import EditCandidate from "./pages/job-portal/CandidatesPage/EditCandidate";
 import EditJob from "./pages/job-portal/jobsPage/EditJob";
 import DeleteRequestPage from "./pages/job-portal/deleteRequests/DeleteRequestPage";
+import Approvals from "./pages/job-portal/Approvals/Approvals";
 
 function App() {
   const router = createBrowserRouter([
@@ -87,6 +88,10 @@ function App() {
         {
           path: "job-portal/delete-requests",
           element: <DeleteRequestPage />,
+        },
+        {
+          path: "job-portal/approvals",
+          element: <Approvals />,
         },
         {
           path: "study-abroad",
